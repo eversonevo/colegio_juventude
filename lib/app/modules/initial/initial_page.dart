@@ -21,7 +21,7 @@ class InitialPage extends GetView<InitialController> {
                ElevatedButton(
                  style: style,
                  onPressed: (){
-                   Get.toNamed('/initial_prox');
+                   Get.toNamed('/initial_proxp');
                  }, child: Text("Seguir"))
              ],
            ),
