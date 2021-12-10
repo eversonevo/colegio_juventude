@@ -1,3 +1,5 @@
+// ignore_for_file: curly_braces_in_flow_control_structures, void_checks
+
 import 'package:colegio_juventude/app/UI/theme_extensions.dart';
 import 'package:colegio_juventude/app/modules/registration/widgtes/register_fields.dart';
 import 'package:colegio_juventude/app/modules/registration/widgtes/register_telephones.dart';
@@ -33,9 +35,14 @@ class RegistrationPage extends GetView<RegistrationController> {
                       children: [
                         Obx(() => ListView.builder(
                                 shrinkWrap: true,
-                                itemCount: controller.itemCountTel.value,        //número de vezes que você deseja replicar o widget
+                                itemCount: controller.itemCountTel.value < 3 ? controller.itemCountTel.value : 3,        //número de vezes que você deseja replicar o widget
                                 itemBuilder: (context, index){
-                                    return Expanded(child: RegisterFields(label: 'TELEFONES', hintText: 'telefones', controllerTextField: controller.telefoneController));
+                                    return Row(
+                                      children: [
+                                        Obx(() => controller.createDropDown(index)!),
+                                        Expanded(child: RegisterFields(label: 'TELEFONES', hintText: 'telefones', controllerTextField: controller.telefoneController)),
+                                      ],
+                                    );
 
                           })),
                           Positioned(
@@ -61,7 +68,7 @@ class RegistrationPage extends GetView<RegistrationController> {
                       children: [
                         Obx(() => ListView.builder(
                                 shrinkWrap: true,
-                                itemCount: controller.itemCountForm.value,        //número de vezes que você deseja replicar o widget
+                                itemCount: controller.itemCountForm.value < 5 ? controller.itemCountForm.value : 5,        //número de vezes que você deseja replicar o widget
                                 itemBuilder: (context, index){
                                     return Expanded(child: RegisterFields(label: 'FORMAÇÃO', hintText: 'Formação', controllerTextField: controller.formacaoController));
 
@@ -86,7 +93,7 @@ class RegistrationPage extends GetView<RegistrationController> {
                       children: [
                         Obx(() => ListView.builder(
                                 shrinkWrap: true,
-                                itemCount: controller.itemCountEsp.value,        //número de vezes que você deseja replicar o widget
+                                itemCount: controller.itemCountEsp.value < 5 ? controller.itemCountEsp.value : 5,        //número de vezes que você deseja replicar o widget
                                 itemBuilder: (context, index){
                                     return Expanded(child: RegisterFields(label: 'ESPECIALIZAÇÃO', hintText: 'Especialização', controllerTextField: controller.especializacaoController));
 
@@ -111,7 +118,7 @@ class RegistrationPage extends GetView<RegistrationController> {
                       children: [
                         Obx(() => ListView.builder(
                                 shrinkWrap: true,
-                                itemCount: controller.itemCountDisc.value,        //número de vezes que você deseja replicar o widget
+                                itemCount: controller.itemCountDisc.value < 5 ? controller.itemCountDisc.value : 5,        //número de vezes que você deseja replicar o widget
                                 itemBuilder: (context, index){
                                     return Expanded(child: RegisterFields(label: 'DISCIPLINA', hintText: 'Disciplina', controllerTextField: controller.disciplinaController));
 
