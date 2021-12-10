@@ -9,11 +9,11 @@ class RegisterTelephones extends StatelessWidget {
    Widget build(BuildContext context) {
        return Row(
                   children: [
-                    Expanded(child: RegisterFields(label: 'TELEFONES', hintText: 'telefones')),
+                 /*   Expanded(child: RegisterFields(label: 'TELEFONES', hintText: 'telefones', controllerTextField: controller.disciplinasController)),
                     Padding(
                       padding: const EdgeInsets.only(right: 8),
                       child: GestureDetector(onTap: (){}, child: const Icon(Icons.add)),
-                    ),
+                    ),*/
                   ],
                 );
   }

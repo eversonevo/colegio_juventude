@@ -1,15 +1,19 @@
 import 'package:colegio_juventude/app/UI/theme_extensions.dart';
+import 'package:colegio_juventude/app/modules/registration/registration_controller.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get_state_manager/src/simple/get_view.dart';
 
-class RegisterFields extends StatelessWidget {
+class RegisterFields extends GetView<RegistrationController> {
 
-  RegisterFields({ @required label, required hintText,Key? key })
+  RegisterFields({ @required label, required hintText,required controllerTextField,Key? key })
    : _label = label,
+   _controllerTextField = controllerTextField,
    _hintText = hintText,
    super(key: key);
 
   String _label;
   String _hintText;
+  TextEditingController _controllerTextField;
 
    @override
    Widget build(BuildContext context) {
@@ -17,6 +21,10 @@ class RegisterFields extends StatelessWidget {
          child: Padding(
            padding: const EdgeInsets.only(right: 8,left: 8),
            child: TextField(
+                        onChanged: (value){
+                          controller.verifyDatas();
+                        },
+                        controller: _controllerTextField,
                         autofocus: false,
                         decoration: InputDecoration(
                           focusedBorder: UnderlineInputBorder(
