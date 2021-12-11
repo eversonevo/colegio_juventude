@@ -1,4 +1,5 @@
-import 'package:colegio_juventude/app/modules/registration/widgtes/register_dropdown.dart';
+import 'package:colegio_juventude/app/modules/registration/widgtes/register_dropdown_form.dart';
+import 'package:colegio_juventude/app/modules/registration/widgtes/register_dropdown_phone.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -14,10 +15,21 @@ class RegistrationController extends GetxController {
   final RxString itemCelular3 = 'Celular'.obs;
   final RxInt index = 1.obs;
 
+  final RxString itemFormation1 = 'Graduação'.obs;
+  final RxString itemFormation2 = 'Graduação'.obs;
+  final RxString itemFormation3 = 'Graduação'.obs;
+  final RxString itemFormation4 = 'Graduação'.obs;
+  final RxString itemFormation5 = 'Graduação'.obs;
+
   List<String> lista1 = ['Celular','Residencial','Comercial'];
   List<String> lista2 = ['Celular','Residencial','Comercial'];
   List<String> lista3 = ['Celular','Residencial','Comercial'];
 
+  List<String> listForm1 = ['Ensino Fundamental','Ensino Médio','Graduação'];
+  List<String> listForm2 = ['Ensino Fundamental','Ensino Médio','Graduação'];
+  List<String> listForm3 = ['Ensino Fundamental','Ensino Médio','Graduação'];
+  List<String> listForm4 = ['Ensino Fundamental','Ensino Médio','Graduação'];
+  List<String> listForm5 = ['Ensino Fundamental','Ensino Médio','Graduação'];
 
 
   final RxBool _validation = false.obs;
@@ -38,6 +50,8 @@ class RegistrationController extends GetxController {
   TextEditingController formacaoController = TextEditingController();
   TextEditingController especializacaoController = TextEditingController();
   TextEditingController disciplinaController = TextEditingController();
+
+  List<TextEditingController> listPhones = [TextEditingController(),TextEditingController(),TextEditingController()];
 
   verifyDatas(){
     if (nomeController.text.length > 0 &&
@@ -70,6 +84,22 @@ class RegistrationController extends GetxController {
     return [];
   }
 
+   List<String> returnListForm(int index){
+    switch(index){
+      case 0:
+        return listForm1;
+      case 1:
+        return listForm2;
+      case 2:
+        return listForm3;
+      case 3:
+        return listForm4;
+      case 4:
+        return listForm5;
+    }
+    return [];
+  }
+
   String returnItemCelular(int index){
     switch(index){
       case 0:
@@ -94,14 +124,29 @@ class RegistrationController extends GetxController {
     return const Text("");
   }
 
-  Widget? createDropDown(int index){
+  Widget? createDropDownPhone(int index){
       if (index == 0) {
-        return RegisterDropdown(items: lista1,hint: 'Celular',itemPhone: itemCelular1.value,index: index,);
+        return RegisterDropdownPhone(items: lista1,itemPhone: itemCelular1.value,index: index,);
       }else if (index == 1){
-        return RegisterDropdown(items: lista2,hint: 'Celular',itemPhone: itemCelular2.value,index: index,);
+        return RegisterDropdownPhone(items: lista2,itemPhone: itemCelular2.value,index: index,);
       }else{
-        return RegisterDropdown(items: lista3,hint: 'Celular',itemPhone: itemCelular3.value,index: index,);
+        return RegisterDropdownPhone(items: lista3,itemPhone: itemCelular3.value,index: index,);
       }
   }  
+
+  Widget? createDropDownFormation(int index){
+      if (index == 0) {
+        return RegisterDropdownForm(items: listForm1,itemForm: itemFormation1.value,index: index,);
+      }else if (index == 1){
+        return RegisterDropdownForm(items: listForm2,itemForm: itemFormation2.value,index: index,);
+      }else if (index == 2){
+        return RegisterDropdownForm(items: listForm3,itemForm: itemFormation3.value,index: index,);
+      }else if (index == 3){
+        return RegisterDropdownForm(items: listForm4,itemForm: itemFormation4.value,index: index,);
+      }else{
+        return RegisterDropdownForm(items: listForm5,itemForm: itemFormation5.value,index: index,);
+      }
+
+  }
 
 }

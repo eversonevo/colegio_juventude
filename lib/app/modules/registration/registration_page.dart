@@ -2,7 +2,6 @@
 
 import 'package:colegio_juventude/app/UI/theme_extensions.dart';
 import 'package:colegio_juventude/app/modules/registration/widgtes/register_fields.dart';
-import 'package:colegio_juventude/app/modules/registration/widgtes/register_telephones.dart';
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
 import './registration_controller.dart';
@@ -21,7 +20,7 @@ class RegistrationPage extends GetView<RegistrationController> {
                 backgroundColor: context.themeGreen,
                 actions: [
                   if (controller.validation)
-                    Padding(
+                    const Padding(
                       padding: EdgeInsets.only(right: 8),
                       child: Icon(Icons.check_outlined,color: Colors.white,))
                 ],),
@@ -39,7 +38,7 @@ class RegistrationPage extends GetView<RegistrationController> {
                                 itemBuilder: (context, index){
                                     return Row(
                                       children: [
-                                        Obx(() => controller.createDropDown(index)!),
+                                        Obx(() => controller.createDropDownPhone(index)!),
                                         Expanded(child: RegisterFields(label: 'TELEFONES', hintText: 'telefones', controllerTextField: controller.telefoneController)),
                                       ],
                                     );
@@ -64,6 +63,39 @@ class RegistrationPage extends GetView<RegistrationController> {
                 RegisterFields(label: 'E-MAIL @ESCOLA', hintText: 'meuemail@escola.pr.gov.br', controllerTextField: controller.emailEscController),
                 RegisterFields(label: 'E-MAIL INSTITUCIONAL', hintText: 'meuemail@seed.pr.gov.br', controllerTextField: controller.emailInstController),
 
+// formação
+
+                Stack(
+                      children: [
+                        Obx(() => ListView.builder(
+                                shrinkWrap: true,
+                                itemCount: controller.itemCountForm.value < 5 ? controller.itemCountForm.value : 5,        //número de vezes que você deseja replicar o widget
+                                itemBuilder: (context, index){
+                                    return Row(
+                                      children: [
+                                        Obx(() => controller.createDropDownFormation(index)!),
+                                        Expanded(child: RegisterFields(label: 'CURSO', hintText: 'Curso', controllerTextField: controller.listPhones[index])),
+                                      ],
+                                    );
+
+                          })),
+                          Positioned(
+                            right: 8,
+                            child: Visibility(
+                                      visible: controller.itemCountForm.value == 1 ? true : false,
+                                      child: Padding(
+                                          padding: const EdgeInsets.only(right: 8),
+                                          child: GestureDetector(onTap: (){
+                                            controller.itemCountForm.value+=1;
+                                            //RegisterFields(label: 'TELEFONES', hintText: 'telefones', controllerTextField: controller.telefoneController);
+                                          }, child: const Icon(Icons.add)),
+                                        ),
+                                    ),
+                          ),
+                      ],
+                    ),
+
+// **********************
                 Stack(
                       children: [
                         Obx(() => ListView.builder(

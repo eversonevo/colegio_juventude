@@ -2,25 +2,22 @@ import 'package:colegio_juventude/app/modules/registration/registration_controll
 import 'package:flutter/material.dart';
 import 'package:get/get_state_manager/src/simple/get_view.dart';
 
-// ignore: must_be_immutable
-class RegisterDropdown extends GetView<RegistrationController> {
+class RegisterDropdownForm extends GetView<RegistrationController> {
 
-  RegisterDropdown({
+  RegisterDropdownForm({
     required List<String> items,
-    required String hint,
-    required String itemPhone,
-    required int index,
-     Key? key })
-     :_items = items,
-     _hint = hint,
-     _itemPhone = itemPhone,
+    required String itemForm,
+    required int index, Key? key })
+       :_items = items,
+     _itemForm = itemForm,
      _index = index,
      super(key: key);
 
   final List<String> _items;
-  final String _hint;
-  String _itemPhone;
+  String _itemForm;
   final int _index;
+
+  
 
    @override
    Widget build(BuildContext context) {
@@ -31,18 +28,20 @@ class RegisterDropdown extends GetView<RegistrationController> {
                                                     child: Text(value),
                                             );
                                             }).toList(),
-                                            hint: Text(_hint),
+                                            hint: Text(_itemForm),
                                             onChanged: (value) {
                                               if (_index == 0) {
-                                                controller.itemCelular1.value = value!;
+                                                controller.itemFormation1.value = value!;
                                               } else if (_index == 1) {
-                                                controller.itemCelular2.value = value!;
+                                                controller.itemFormation2.value = value!;
                                               } else if (_index == 2) {
-                                                controller.itemCelular3.value = value!;
+                                                controller.itemFormation3.value = value!;
+                                              } else if (_index == 3) {
+                                                controller.itemFormation4.value = value!;
+                                              } else if (_index == 4) {
+                                                controller.itemFormation5.value = value!;
                                               }
-                                              _itemPhone = value!;
-                                              // preciso alterar o itemCelular aqui
-
+                                              _itemForm = value!;
                                             }
                                         );
   }
