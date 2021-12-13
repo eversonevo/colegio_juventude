@@ -63,7 +63,7 @@ class RegistrationPage extends GetView<RegistrationController> {
                 RegisterFields(label: 'E-MAIL @ESCOLA', hintText: 'meuemail@escola.pr.gov.br', controllerTextField: controller.emailEscController),
                 RegisterFields(label: 'E-MAIL INSTITUCIONAL', hintText: 'meuemail@seed.pr.gov.br', controllerTextField: controller.emailInstController),
 
-// formação
+// **************  FORMAÇÃO
 
                 Stack(
                       children: [
@@ -74,7 +74,7 @@ class RegistrationPage extends GetView<RegistrationController> {
                                     return Row(
                                       children: [
                                         Obx(() => controller.createDropDownFormation(index)!),
-                                        Expanded(child: RegisterFields(label: 'CURSO', hintText: 'Curso', controllerTextField: controller.listPhones[index])),
+                                        Expanded(child: RegisterFields(label: 'FORMAÇÃO', hintText: 'Formação', controllerTextField: controller.listFormation[index])),
                                       ],
                                     );
 
@@ -86,6 +86,8 @@ class RegistrationPage extends GetView<RegistrationController> {
                                       child: Padding(
                                           padding: const EdgeInsets.only(right: 8),
                                           child: GestureDetector(onTap: (){
+                                            if (controller.listFormation.length < 5)
+                                              controller.listFormation.add(TextEditingController());
                                             controller.itemCountForm.value+=1;
                                             //RegisterFields(label: 'TELEFONES', hintText: 'telefones', controllerTextField: controller.telefoneController);
                                           }, child: const Icon(Icons.add)),
@@ -95,32 +97,7 @@ class RegistrationPage extends GetView<RegistrationController> {
                       ],
                     ),
 
-// **********************
-                Stack(
-                      children: [
-                        Obx(() => ListView.builder(
-                                shrinkWrap: true,
-                                itemCount: controller.itemCountForm.value < 5 ? controller.itemCountForm.value : 5,        //número de vezes que você deseja replicar o widget
-                                itemBuilder: (context, index){
-                                    return Expanded(child: RegisterFields(label: 'FORMAÇÃO', hintText: 'Formação', controllerTextField: controller.formacaoController));
-
-                          })),
-                          Positioned(
-                            right: 8,
-                            child: Visibility(
-                                      visible: controller.itemCountForm.value == 1 ? true : false,
-                                      child: Padding(
-                                          padding: const EdgeInsets.only(right: 8),
-                                          child: GestureDetector(onTap: (){
-                                            controller.itemCountForm.value+=1;
-                                            //RegisterFields(label: 'TELEFONES', hintText: 'telefones', controllerTextField: controller.telefoneController);
-                                          }, child: const Icon(Icons.add)),
-                                        ),
-                                    ),
-                          ),
-                      ],
-                    ),
-
+// ******** ESPECIALIZAÇÃO
                     Stack(
                       children: [
                         Obx(() => ListView.builder(
@@ -145,6 +122,7 @@ class RegistrationPage extends GetView<RegistrationController> {
                           ),
                       ],
                     ),
+// *********************
 
                     Stack(
                       children: [

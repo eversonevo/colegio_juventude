@@ -31,15 +31,44 @@ class RegisterDropdownForm extends GetView<RegistrationController> {
                                             hint: Text(_itemForm),
                                             onChanged: (value) {
                                               if (_index == 0) {
-                                                controller.itemFormation1.value = value!;
+                                                controller.itemFormation[0] = value!;
+                                                //if (controller.itemFormation1.value == "Ensino Fundamental" || controller.itemFormation1.value == "Ensino Médio")
+                                                if (controller.itemFormation[0] == "Ensino Fundamental" || controller.itemFormation[0] == "Ensino Médio")
+                                                  controller.listFormation[_index].text = 'Ensino completo';
+                                                else
+                                                  controller.listFormation[_index].text = '';
                                               } else if (_index == 1) {
-                                                controller.itemFormation2.value = value!;
+                                                //controller.itemFormation2.value = value!;
+                                                controller.itemFormation[0] = value!;
+                                                //if (controller.itemFormation1.value == "Ensino Fundamental" || controller.itemFormation1.value == "Ensino Médio")
+                                                if (controller.itemFormation[0] == "Ensino Fundamental" || controller.itemFormation[0] == "Ensino Médio")
+                                                  controller.listFormation[_index].text = 'Ensino completo';
+                                                else
+                                                  controller.listFormation[_index].text = '';
                                               } else if (_index == 2) {
-                                                controller.itemFormation3.value = value!;
+                                                controller.itemFormation[0] = value!;
+                                                //if (controller.itemFormation1.value == "Ensino Fundamental" || controller.itemFormation1.value == "Ensino Médio")
+                                                if (controller.itemFormation[0] == "Ensino Fundamental" || controller.itemFormation[0] == "Ensino Médio")
+                                                  controller.listFormation[_index].text = 'Ensino completo';
+                                                else
+                                                  controller.listFormation[_index].text = '';
+                                                //controller.itemFormation3.value = value!;
                                               } else if (_index == 3) {
-                                                controller.itemFormation4.value = value!;
+                                                controller.itemFormation[0] = value!;
+                                                //if (controller.itemFormation1.value == "Ensino Fundamental" || controller.itemFormation1.value == "Ensino Médio")
+                                                if (controller.itemFormation[0] == "Ensino Fundamental" || controller.itemFormation[0] == "Ensino Médio")
+                                                  controller.listFormation[_index].text = 'Ensino completo';
+                                                else
+                                                  controller.listFormation[_index].text = '';
+                                                //controller.itemFormation4.value = value!;
                                               } else if (_index == 4) {
-                                                controller.itemFormation5.value = value!;
+                                                controller.itemFormation[0] = value!;
+                                                //if (controller.itemFormation1.value == "Ensino Fundamental" || controller.itemFormation1.value == "Ensino Médio")
+                                                if (controller.itemFormation[0] == "Ensino Fundamental" || controller.itemFormation[0] == "Ensino Médio")
+                                                  controller.listFormation[_index].text = 'Ensino completo';
+                                                else
+                                                  controller.listFormation[_index].text = '';
+                                                //controller.itemFormation5.value = value!;
                                               }
                                               _itemForm = value!;
                                             }

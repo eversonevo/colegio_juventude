@@ -15,22 +15,31 @@ class RegistrationController extends GetxController {
   final RxString itemCelular3 = 'Celular'.obs;
   final RxInt index = 1.obs;
 
+  // substituir listForm1,2,3,4,5  Cria um array d arrays
+  RxList<List<String>> graphArray = List.generate(5, (index) => ['Ensino Fundamental','Ensino Médio','Graduação']).obs;
+
+  RxList<String> itemFormation = ['Graduação'].obs;
+/*
+
+ALGUNS ERROS AINDA
+
   final RxString itemFormation1 = 'Graduação'.obs;
   final RxString itemFormation2 = 'Graduação'.obs;
   final RxString itemFormation3 = 'Graduação'.obs;
   final RxString itemFormation4 = 'Graduação'.obs;
   final RxString itemFormation5 = 'Graduação'.obs;
-
+*/
   List<String> lista1 = ['Celular','Residencial','Comercial'];
   List<String> lista2 = ['Celular','Residencial','Comercial'];
   List<String> lista3 = ['Celular','Residencial','Comercial'];
 
+/*
   List<String> listForm1 = ['Ensino Fundamental','Ensino Médio','Graduação'];
   List<String> listForm2 = ['Ensino Fundamental','Ensino Médio','Graduação'];
   List<String> listForm3 = ['Ensino Fundamental','Ensino Médio','Graduação'];
   List<String> listForm4 = ['Ensino Fundamental','Ensino Médio','Graduação'];
   List<String> listForm5 = ['Ensino Fundamental','Ensino Médio','Graduação'];
-
+*/
 
   final RxBool _validation = false.obs;
   bool get validation{
@@ -47,11 +56,21 @@ class RegistrationController extends GetxController {
   TextEditingController emailInstController = TextEditingController();
   TextEditingController emailEscController = TextEditingController();
   TextEditingController telefoneController = TextEditingController();
-  TextEditingController formacaoController = TextEditingController();
+  //TextEditingController formacaoController = TextEditingController();
   TextEditingController especializacaoController = TextEditingController();
   TextEditingController disciplinaController = TextEditingController();
 
-  List<TextEditingController> listPhones = [TextEditingController(),TextEditingController(),TextEditingController()];
+  List<TextEditingController> listFormation = [TextEditingController()];
+
+    @override
+  void onReady() {
+     
+    print ('aaa '+listFormation[0].text);
+    // corrigir erro que o timer não para
+
+  }
+
+  
 
   verifyDatas(){
     if (nomeController.text.length > 0 &&
@@ -61,7 +80,7 @@ class RegistrationController extends GetxController {
         emailInstController.text.length > 0 &&
         emailEscController.text.length > 0 &&
         telefoneController.text.length > 0 &&
-        formacaoController.text.length > 0 &&
+       // formacaoController.text.length > 0 &&
         especializacaoController.text.length > 0 &&
         disciplinaController.text.length > 0){
           print('echogg');
@@ -87,15 +106,15 @@ class RegistrationController extends GetxController {
    List<String> returnListForm(int index){
     switch(index){
       case 0:
-        return listForm1;
+        return graphArray[0];
       case 1:
-        return listForm2;
+        return graphArray[1];
       case 2:
-        return listForm3;
+        return graphArray[2];
       case 3:
-        return listForm4;
+        return graphArray[3];
       case 4:
-        return listForm5;
+        return graphArray[4];
     }
     return [];
   }
@@ -135,16 +154,18 @@ class RegistrationController extends GetxController {
   }  
 
   Widget? createDropDownFormation(int index){
+      print('teste '+graphArray[0][0].toString());
       if (index == 0) {
-        return RegisterDropdownForm(items: listForm1,itemForm: itemFormation1.value,index: index,);
+        return RegisterDropdownForm(items: graphArray[0],itemForm: itemFormation[0],index: index,);
+        //return RegisterDropdownForm(items: listForm1,itemForm: itemFormation1.value,index: index,);
       }else if (index == 1){
-        return RegisterDropdownForm(items: listForm2,itemForm: itemFormation2.value,index: index,);
+        return RegisterDropdownForm(items: graphArray[1],itemForm: itemFormation[0],index: index,);
       }else if (index == 2){
-        return RegisterDropdownForm(items: listForm3,itemForm: itemFormation3.value,index: index,);
+        return RegisterDropdownForm(items: graphArray[2],itemForm: itemFormation[0],index: index,);
       }else if (index == 3){
-        return RegisterDropdownForm(items: listForm4,itemForm: itemFormation4.value,index: index,);
+        return RegisterDropdownForm(items: graphArray[3],itemForm: itemFormation[0],index: index,);
       }else{
-        return RegisterDropdownForm(items: listForm5,itemForm: itemFormation5.value,index: index,);
+        return RegisterDropdownForm(items: graphArray[4],itemForm: itemFormation[0],index: index,);
       }
 
   }
