@@ -10,6 +10,9 @@ class RegistrationController extends GetxController {
   final RxInt itemCountEsp = 1.obs;
   final RxInt itemCountDisc = 1.obs;
 
+  final RxBool checkedCompleto = false.obs;
+  final RxBool checkedIncompleto = false.obs;
+
   final RxString itemCelular1 = 'Celular'.obs;
   final RxString itemCelular2 = 'Celular'.obs;
   final RxString itemCelular3 = 'Celular'.obs;

@@ -71,10 +71,63 @@ class RegistrationPage extends GetView<RegistrationController> {
                                 shrinkWrap: true,
                                 itemCount: controller.itemCountForm.value < 5 ? controller.itemCountForm.value : 5,        //número de vezes que você deseja replicar o widget
                                 itemBuilder: (context, index){
-                                    return Row(
+                                    return Column(
                                       children: [
-                                        Obx(() => controller.createDropDownFormation(index)!),
-                                        Expanded(child: RegisterFields(label: 'FORMAÇÃO', hintText: 'Formação', controllerTextField: controller.listFormation[index])),
+                                        Row(
+                                          children: [
+                                            Obx(() => controller.createDropDownFormation(index)!),
+                                            Expanded(child: RegisterFields(label: 'FORMAÇÃO', hintText: 'Formação', controllerTextField: controller.listFormation[index])),
+                                          ],
+                                        ),
+                                        Container(
+                                          width: Get.width * .9,
+                                          child: Row(
+                                            children: [
+                                              Obx(() => Visibility(
+                                                visible: controller.itemFormation[0] == 'Ensino Fundamental' ? true : false,
+                                                child: Expanded(
+                                                  child: Visibility(
+                                                    visible: controller.checkedIncompleto.value != true,
+                                                    child: CheckboxListTile(
+                                            title: const Text('Completo'),
+                                            //subtitle: const Text('A computer science portal for geeks.'),
+                                            //secondary: const Icon(Icons.code),
+                                            autofocus: false,
+                                            activeColor: Colors.green,
+                                            checkColor: Colors.white,
+                                            value: controller.checkedCompleto.value,
+                                            onChanged: (bool? v){
+                                                    controller.checkedCompleto.value = v!;
+                                            },
+                                            
+                                          ),
+                                                  ),
+                                                ),
+                                              ),),
+                                          Obx(() => Visibility(
+                                            visible: controller.itemFormation[0] == 'Ensino Fundamental' ? true : false,
+                                            child: Expanded(
+                                              child: Visibility(
+                                                visible: controller.checkedCompleto.value != true,
+                                                child: CheckboxListTile(
+                                                  title: const Text('Incompleto'),
+                                                  //subtitle: const Text('A computer science portal for geeks.'),
+                                                  //secondary: const Icon(Icons.code),
+                                                  autofocus: false,
+                                                  activeColor: Colors.green,
+                                                  checkColor: Colors.white,
+                                                  value: controller.checkedIncompleto.value,
+                                                  onChanged: (bool? v){
+                                                    controller.checkedIncompleto.value = v!;
+                                                  },
+                                                  
+                                                ),
+                                              ),
+                                            ),
+                                          ),),
+                                            ],
+                                          ),
+                                        )
                                       ],
                                     );
 
