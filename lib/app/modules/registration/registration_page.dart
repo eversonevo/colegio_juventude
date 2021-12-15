@@ -84,44 +84,32 @@ class RegistrationPage extends GetView<RegistrationController> {
                                           child: Row(
                                             children: [
                                               Obx(() => Visibility(
-                                                visible: controller.itemFormation[0] == 'Ensino Fundamental' ? true : false,
                                                 child: Expanded(
-                                                  child: Visibility(
-                                                    visible: controller.checkedIncompleto.value != true,
-                                                    child: CheckboxListTile(
+                                                  child: CheckboxListTile(
                                             title: const Text('Completo'),
-                                            //subtitle: const Text('A computer science portal for geeks.'),
-                                            //secondary: const Icon(Icons.code),
                                             autofocus: false,
                                             activeColor: Colors.green,
                                             checkColor: Colors.white,
                                             value: controller.checkedCompleto.value,
-                                            onChanged: (bool? v){
-                                                    controller.checkedCompleto.value = v!;
+                                            onChanged: controller.checkedIncompleto.value ? null : (bool? v){
+                                                  controller.checkedCompleto.value = v!;
                                             },
-                                            
+
                                           ),
-                                                  ),
                                                 ),
                                               ),),
                                           Obx(() => Visibility(
-                                            visible: controller.itemFormation[0] == 'Ensino Fundamental' ? true : false,
                                             child: Expanded(
-                                              child: Visibility(
-                                                visible: controller.checkedCompleto.value != true,
-                                                child: CheckboxListTile(
-                                                  title: const Text('Incompleto'),
-                                                  //subtitle: const Text('A computer science portal for geeks.'),
-                                                  //secondary: const Icon(Icons.code),
-                                                  autofocus: false,
-                                                  activeColor: Colors.green,
-                                                  checkColor: Colors.white,
-                                                  value: controller.checkedIncompleto.value,
-                                                  onChanged: (bool? v){
-                                                    controller.checkedIncompleto.value = v!;
-                                                  },
-                                                  
-                                                ),
+                                              child: CheckboxListTile(
+                                                title: const Text('Incompleto'),
+                                                autofocus: false,
+                                                activeColor: Colors.green,
+                                                checkColor: Colors.white,
+                                                value: controller.checkedIncompleto.value,
+                                                onChanged: controller.checkedCompleto.value ? null : (bool? v){
+                                                  controller.checkedIncompleto.value = v!;
+                                            }, 
+
                                               ),
                                             ),
                                           ),),
@@ -139,8 +127,11 @@ class RegistrationPage extends GetView<RegistrationController> {
                                       child: Padding(
                                           padding: const EdgeInsets.only(right: 8),
                                           child: GestureDetector(onTap: (){
-                                            if (controller.listFormation.length < 5)
+                                            if (controller.listFormation.length < 5){
                                               controller.listFormation.add(TextEditingController());
+                                              //controller.itemFormation.add(item);
+                                            }
+                                              
                                             controller.itemCountForm.value+=1;
                                             //RegisterFields(label: 'TELEFONES', hintText: 'telefones', controllerTextField: controller.telefoneController);
                                           }, child: const Icon(Icons.add)),

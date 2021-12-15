@@ -1,5 +1,6 @@
 import 'package:colegio_juventude/app/modules/registration/registration_controller.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:get/get_state_manager/src/simple/get_view.dart';
 
 class RegisterDropdownForm extends GetView<RegistrationController> {
@@ -28,44 +29,46 @@ class RegisterDropdownForm extends GetView<RegistrationController> {
                                                     child: Text(value),
                                             );
                                             }).toList(),
-                                            hint: Text(_itemForm),
+                                            hint: Obx(() => Text(controller.graphArray[_index][0]),), /// está correto só não está atualizando automaticamente
                                             onChanged: (value) {
                                               if (_index == 0) {
-                                                controller.itemFormation[0] = value!;
+                                                controller.graphArray[_index][_index] = value!;
+                                                print('eee '+controller.graphArray[_index][0]);
                                                 //if (controller.itemFormation1.value == "Ensino Fundamental" || controller.itemFormation1.value == "Ensino Médio")
-                                                if (controller.itemFormation[0] == "Ensino Fundamental" || controller.itemFormation[0] == "Ensino Médio")
-                                                  controller.listFormation[_index].text = 'Ensino completo';
+                                                if (controller.graphArray[_index][0] == "Ensino Fundamental" || controller.graphArray[_index][0] == "Ensino Médio"){
+                                                  controller.listFormation[_index].text = 'Ensino Regular';
+                                                }
                                                 else
                                                   controller.listFormation[_index].text = '';
                                               } else if (_index == 1) {
                                                 //controller.itemFormation2.value = value!;
-                                                controller.itemFormation[0] = value!;
+                                                controller.graphArray[_index][0] = value!;
                                                 //if (controller.itemFormation1.value == "Ensino Fundamental" || controller.itemFormation1.value == "Ensino Médio")
-                                                if (controller.itemFormation[0] == "Ensino Fundamental" || controller.itemFormation[0] == "Ensino Médio")
-                                                  controller.listFormation[_index].text = 'Ensino completo';
+                                                if (controller.graphArray[_index][0] == "Ensino Fundamental" || controller.graphArray[_index][0] == "Ensino Médio")
+                                                  controller.listFormation[_index].text = 'Ensino Regular';
                                                 else
                                                   controller.listFormation[_index].text = '';
                                               } else if (_index == 2) {
-                                                controller.itemFormation[0] = value!;
+                                                controller.graphArray[_index][0] = value!;
                                                 //if (controller.itemFormation1.value == "Ensino Fundamental" || controller.itemFormation1.value == "Ensino Médio")
-                                                if (controller.itemFormation[0] == "Ensino Fundamental" || controller.itemFormation[0] == "Ensino Médio")
-                                                  controller.listFormation[_index].text = 'Ensino completo';
+                                                if (controller.graphArray[_index][0] == "Ensino Fundamental" || controller.graphArray[_index][0] == "Ensino Médio")
+                                                  controller.listFormation[_index].text = 'Ensino Regular';
                                                 else
                                                   controller.listFormation[_index].text = '';
                                                 //controller.itemFormation3.value = value!;
                                               } else if (_index == 3) {
-                                                controller.itemFormation[0] = value!;
+                                                controller.graphArray[_index][0] = value!;
                                                 //if (controller.itemFormation1.value == "Ensino Fundamental" || controller.itemFormation1.value == "Ensino Médio")
-                                                if (controller.itemFormation[0] == "Ensino Fundamental" || controller.itemFormation[0] == "Ensino Médio")
-                                                  controller.listFormation[_index].text = 'Ensino completo';
+                                                if (controller.graphArray[_index][0] == "Ensino Fundamental" || controller.graphArray[_index][0] == "Ensino Médio")
+                                                  controller.listFormation[_index].text = 'Ensino Regular';
                                                 else
                                                   controller.listFormation[_index].text = '';
                                                 //controller.itemFormation4.value = value!;
                                               } else if (_index == 4) {
-                                                controller.itemFormation[0] = value!;
+                                                controller.graphArray[_index][0] = value!;
                                                 //if (controller.itemFormation1.value == "Ensino Fundamental" || controller.itemFormation1.value == "Ensino Médio")
-                                                if (controller.itemFormation[0] == "Ensino Fundamental" || controller.itemFormation[0] == "Ensino Médio")
-                                                  controller.listFormation[_index].text = 'Ensino completo';
+                                                if (controller.graphArray[_index][0] == "Ensino Fundamental" || controller.graphArray[_index][0] == "Ensino Médio")
+                                                  controller.listFormation[_index].text = 'Ensino Regular';
                                                 else
                                                   controller.listFormation[_index].text = '';
                                                 //controller.itemFormation5.value = value!;

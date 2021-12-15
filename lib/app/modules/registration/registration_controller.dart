@@ -1,3 +1,4 @@
+import 'package:colegio_juventude/app/models/graduation.dart';
 import 'package:colegio_juventude/app/modules/registration/widgtes/register_dropdown_form.dart';
 import 'package:colegio_juventude/app/modules/registration/widgtes/register_dropdown_phone.dart';
 import 'package:flutter/material.dart';
@@ -21,7 +22,9 @@ class RegistrationController extends GetxController {
   // substituir listForm1,2,3,4,5  Cria um array d arrays
   RxList<List<String>> graphArray = List.generate(5, (index) => ['Ensino Fundamental','Ensino Médio','Graduação']).obs;
 
-  RxList<String> itemFormation = ['Graduação'].obs;
+  RxList<Graduation> grad = [Graduation(type: 'Ensino Fundamental')].obs;
+
+  //RxList<String> itemFormation = ['Graduação'].obs;
 /*
 
 ALGUNS ERROS AINDA
@@ -157,8 +160,8 @@ ALGUNS ERROS AINDA
   }  
 
   Widget? createDropDownFormation(int index){
-      print('teste '+graphArray[0][0].toString());
-      if (index == 0) {
+      print('teste '+graphArray[4][0].toString());
+      /*if (index == 0) {
         return RegisterDropdownForm(items: graphArray[0],itemForm: itemFormation[0],index: index,);
         //return RegisterDropdownForm(items: listForm1,itemForm: itemFormation1.value,index: index,);
       }else if (index == 1){
@@ -169,8 +172,12 @@ ALGUNS ERROS AINDA
         return RegisterDropdownForm(items: graphArray[3],itemForm: itemFormation[0],index: index,);
       }else{
         return RegisterDropdownForm(items: graphArray[4],itemForm: itemFormation[0],index: index,);
-      }
+      }*/
+
+      return RegisterDropdownForm(items: graphArray[index],itemForm: graphArray[index][0],index: index,);
+
 
   }
+
 
 }

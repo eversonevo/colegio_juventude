@@ -25,6 +25,7 @@ class RegisterFields extends GetView<RegistrationController> {
                           controller.verifyDatas();
                         },
                         controller: _controllerTextField,
+                        enabled: true,
                         autofocus: false,
                         decoration: InputDecoration(
                           focusedBorder: UnderlineInputBorder(
