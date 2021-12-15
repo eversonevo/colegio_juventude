@@ -38,7 +38,9 @@ class RegistrationPage extends GetView<RegistrationController> {
                                 itemBuilder: (context, index){
                                     return Row(
                                       children: [
-                                        Obx(() => controller.createDropDownPhone(index)!),
+                                        Obx(() {
+                                          controller.update();
+                                          return controller.createDropDownPhone(index)!;}),
                                         Expanded(child: RegisterFields(label: 'TELEFONES', hintText: 'telefones', controllerTextField: controller.telefoneController)),
                                       ],
                                     );
@@ -128,6 +130,7 @@ class RegistrationPage extends GetView<RegistrationController> {
                                           padding: const EdgeInsets.only(right: 8),
                                           child: GestureDetector(onTap: (){
                                             if (controller.listFormation.length < 5){
+                                              controller.hintDrop.add('Graduação');
                                               controller.listFormation.add(TextEditingController());
                                               //controller.itemFormation.add(item);
                                             }

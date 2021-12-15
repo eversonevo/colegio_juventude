@@ -21,8 +21,12 @@ class RegistrationController extends GetxController {
 
   // substituir listForm1,2,3,4,5  Cria um array d arrays
   RxList<List<String>> graphArray = List.generate(5, (index) => ['Ensino Fundamental','Ensino Médio','Graduação']).obs;
+  RxList<String> hintDrop = ['Graduação'].obs;
 
-  RxList<Graduation> grad = [Graduation(type: 'Ensino Fundamental')].obs;
+  RxList<List<Graduation>> graduationObj = List.generate(5, (index) => [Graduation()]).obs;
+
+  RxList<Graduation> grad = [Graduation()].obs;
+  Graduation gradgrad = Graduation();
 
   //RxList<String> itemFormation = ['Graduação'].obs;
 /*
@@ -173,11 +177,17 @@ ALGUNS ERROS AINDA
       }else{
         return RegisterDropdownForm(items: graphArray[4],itemForm: itemFormation[0],index: index,);
       }*/
-
       return RegisterDropdownForm(items: graphArray[index],itemForm: graphArray[index][0],index: index,);
 
 
   }
 
-
+  void ValidaEscolha(String value,int index){
+      hintDrop[index] = value;
+      if (hintDrop[index] == "Ensino Fundamental" || hintDrop[index] == "Ensino Médio"){
+         listFormation[index].text = 'Ensino Regular';
+      }else{
+         listFormation[index].text = '';
+      }
+  }
 }

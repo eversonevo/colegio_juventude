@@ -1,16 +1,21 @@
 
 class Graduation {
 
-  Graduation({required type}):_type = type;
+  Graduation({selected = 'Graduação'}):_selected = selected;
 
-  String _type;
+  String _selected;
+  String _typeA = 'Ensino Fundamental';
+  String _typeB = 'Ensino Médio';
+  String _typeC = 'Graduação';
 
   // ignore: unnecessary_getters_setters
-  set type(String t) => _type = t;
+  set selected(String t) => _selected = t;
 
   // ignore: unnecessary_getters_setters
-  String get type => _type;
-
+  String get selected => _selected;
+  String get ensFund => _typeA;
+  String get ensMed => _typeB;
+  String get grad => _typeC;
 
   
 }
