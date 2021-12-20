@@ -8,15 +8,15 @@ class RegisterDropdownForm extends GetView<RegistrationController> {
 
   RegisterDropdownForm({
     required List<String> items,
-    required String itemForm,
+    //required String itemForm,
     required int index, Key? key })
        :_items = items,
-     _itemForm = itemForm,
+     //_itemForm = itemForm,
      _index = index,
      super(key: key);
 
   final List<String> _items;
-  String _itemForm;
+  //String _itemForm;
   final int _index;
 
   
@@ -30,7 +30,7 @@ class RegisterDropdownForm extends GetView<RegistrationController> {
                                                     child: Text(value),
                                             );
                                             }).toList(),
-                                            hint: Obx(() => Text(controller.hintDrop[_index]),), /// está correto só não está atualizando automaticamente
+                                            hint: Obx(() => Text(controller.hintDrop[_index]),),
                                             onChanged: (value) {
                                               
                                               controller.ValidaEscolha(value!, _index);

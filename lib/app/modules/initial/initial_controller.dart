@@ -30,7 +30,7 @@ RxInt controlPage = 1.obs;
   }
 
 void startTimer() {
-  const oneSec = Duration(seconds: 5);
+  const oneSec = Duration(seconds: 1);
   var timer = Timer.periodic(oneSec,(Timer timer) {
       controlPage.value+=1;
       if (controlPage.value == 4) {

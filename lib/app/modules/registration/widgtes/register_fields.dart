@@ -1,23 +1,28 @@
 import 'package:colegio_juventude/app/UI/theme_extensions.dart';
 import 'package:colegio_juventude/app/modules/registration/registration_controller.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:get/get_state_manager/src/simple/get_view.dart';
 
 class RegisterFields extends GetView<RegistrationController> {
 
-  RegisterFields({ @required label, required hintText,required controllerTextField,Key? key })
+  RegisterFields({ @required label, required enabled, required hintText,required controllerTextField,Key? key })
    : _label = label,
    _controllerTextField = controllerTextField,
    _hintText = hintText,
+   _enabled = enabled,
+   //_index = index,
    super(key: key);
 
   String _label;
+  bool _enabled;
   String _hintText;
   TextEditingController _controllerTextField;
+  //int _index;
 
    @override
    Widget build(BuildContext context) {
-       return SizedBox(
+       return Obx(() => SizedBox(
          child: Padding(
            padding: const EdgeInsets.only(right: 8,left: 8),
            child: TextField(
@@ -25,7 +30,7 @@ class RegisterFields extends GetView<RegistrationController> {
                           controller.verifyDatas();
                         },
                         controller: _controllerTextField,
-                        enabled: true,
+                        enabled: _enabled,
                         autofocus: false,
                         decoration: InputDecoration(
                           focusedBorder: UnderlineInputBorder(
@@ -39,6 +44,6 @@ class RegisterFields extends GetView<RegistrationController> {
                             hintText: _hintText),
                       ),
          ),
-       );
+       ),);
   }
 }

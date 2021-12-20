@@ -11,8 +11,13 @@ class RegistrationController extends GetxController {
   final RxInt itemCountEsp = 1.obs;
   final RxInt itemCountDisc = 1.obs;
 
-  final RxBool checkedCompleto = false.obs;
-  final RxBool checkedIncompleto = false.obs;
+  final RxBool itemEnsFund = false.obs;
+
+  final RxBool checkedCompleto1 = false.obs;
+  final RxBool checkedIncompleto1 = false.obs;
+
+  final RxList<bool> checkedCompleto = [false,false,false].obs;
+  final RxList<bool> checkedIncompleto = [false,false,false].obs;
 
   final RxString itemCelular1 = 'Celular'.obs;
   final RxString itemCelular2 = 'Celular'.obs;
@@ -71,6 +76,8 @@ ALGUNS ERROS AINDA
   TextEditingController disciplinaController = TextEditingController();
 
   List<TextEditingController> listFormation = [TextEditingController()];
+  RxList<TextEditingController> listPhones = [TextEditingController()].obs;
+
 
     @override
   void onReady() {
@@ -164,7 +171,7 @@ ALGUNS ERROS AINDA
   }  
 
   Widget? createDropDownFormation(int index){
-      print('teste '+graphArray[4][0].toString());
+      //print('teste '+graphArray[4][0].toString());
       /*if (index == 0) {
         return RegisterDropdownForm(items: graphArray[0],itemForm: itemFormation[0],index: index,);
         //return RegisterDropdownForm(items: listForm1,itemForm: itemFormation1.value,index: index,);
@@ -177,9 +184,34 @@ ALGUNS ERROS AINDA
       }else{
         return RegisterDropdownForm(items: graphArray[4],itemForm: itemFormation[0],index: index,);
       }*/
-      return RegisterDropdownForm(items: graphArray[index],itemForm: graphArray[index][0],index: index,);
+    //ValidaHinEFEM(index);
+      return RegisterDropdownForm(items: graphArray[index],/*itemForm: graphArray[index][0],*/index: index,);
 
 
+  }
+
+  bool get ValidaHinEFEM{
+
+    for(var i = 0; i< hintDrop.length;i++){
+      if (hintDrop[i].contains('Ensino Fundamental')){
+          print('nooossssa + ${i}');
+          return true;
+      }
+        
+    }
+
+    return false;
+    
+/*
+    if (index != 0)
+      if (hintDrop[index -1] == 'Ensino Fundamental')
+      {
+        print('eeeeenntreiiii');
+      } else if (hintDrop[index -1] == 'Ensino Médio'){
+        var removeAt = graphArray[index].removeAt(0);
+        print('eeeeenntreiiii');
+      }*/
+    
   }
 
   void ValidaEscolha(String value,int index){
