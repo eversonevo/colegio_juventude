@@ -28,9 +28,9 @@ class RegistrationPage extends GetView<RegistrationController> {
               )),
             body: ListView(
               children: [
-                RegisterFields(label: 'NOME',enabled: true,hintText: 'Nome completo', controllerTextField: controller.nomeController,),
-                RegisterFields(label: 'RG', enabled: true,hintText: '00.000.000-0', controllerTextField: controller.rgController),
-                RegisterFields(label: 'CPF', enabled: true,hintText: '000.000.000-00', controllerTextField: controller.cpfController),
+                RegisterFields(label: 'NOME',enabled: true,hintText: 'Nome completo', controllerTextField: controller.listTextEditing[0],index: 0,),
+                RegisterFields(label: 'RG', enabled: true,hintText: '00.000.000-0', controllerTextField: controller.listTextEditing[1],index: 1,),
+                RegisterFields(label: 'CPF', enabled: true,hintText: '000.000.000-00', controllerTextField: controller.listTextEditing[2],index: 2,),
                     Stack(
                       children: [
                         Obx(() => ListView.builder(
@@ -40,7 +40,7 @@ class RegistrationPage extends GetView<RegistrationController> {
                                     return Row(
                                       children: [
                                         Obx(() => controller.createDropDownPhone(index)!),
-                                        Expanded(child: RegisterFields(label: 'TELEFONES', enabled: true,hintText: 'telefones', controllerTextField: controller.listPhones[index])),
+                                        Expanded(child: RegisterFields(label: 'TELEFONES', enabled: true,hintText: 'telefones', controllerTextField: controller.listPhones[index],index: 99,),),
                                         Visibility(
                                           visible: controller.listPhones[index].text.isNotEmpty ? true : false,
                                           child: Padding(
@@ -79,9 +79,9 @@ class RegistrationPage extends GetView<RegistrationController> {
                           ),
                       ],
                     ),
-                RegisterFields(label: 'E-MAIL PESSOAL',enabled: true,hintText: 'meuemail@meuemail.com', controllerTextField: controller.emailController),
-                RegisterFields(label: 'E-MAIL @ESCOLA', enabled: true,hintText: 'meuemail@escola.pr.gov.br', controllerTextField: controller.emailEscController),
-                RegisterFields(label: 'E-MAIL INSTITUCIONAL', enabled: true, hintText: 'meuemail@seed.pr.gov.br', controllerTextField: controller.emailInstController),
+                RegisterFields(label: 'E-MAIL PESSOAL',enabled: true,hintText: 'meuemail@meuemail.com', controllerTextField: controller.listTextEditing[3],index: 3,),
+                RegisterFields(label: 'E-MAIL @ESCOLA', enabled: true,hintText: 'meuemail@escola.pr.gov.br', controllerTextField: controller.listTextEditing[4],index: 4,),
+                RegisterFields(label: 'E-MAIL INSTITUCIONAL', enabled: true, hintText: 'meuemail@seed.pr.gov.br', controllerTextField: controller.listTextEditing[5],index: 5,),
 
 // **************  FORMAÇÃO
 
@@ -117,7 +117,7 @@ class RegistrationPage extends GetView<RegistrationController> {
                                         children: [
                                             Container(child: const Text('Graduação'),),
                                             SizedBox(width: 8,),
-                                            Expanded(child: RegisterFields(label: 'Curso', enabled: true, hintText: 'Curso', controllerTextField: controller.listFormation[index])),
+                                            Expanded(child: RegisterFields(label: 'Curso', enabled: true, hintText: 'Curso', controllerTextField: controller.listFormation[index],index: 99,)),
                                         ],
                                       ),
                                       CheckboxFormation(index: index+2,),
@@ -228,7 +228,7 @@ class RegistrationPage extends GetView<RegistrationController> {
                                 shrinkWrap: true,
                                 itemCount: controller.itemCountEsp.value < 5 ? controller.itemCountEsp.value : 5,        //número de vezes que você deseja replicar o widget
                                 itemBuilder: (context, index){
-                                    return Expanded(child: RegisterFields(label: 'ESPECIALIZAÇÃO', enabled: true,hintText: 'Especialização', controllerTextField: controller.especializacaoController));
+                                    return Expanded(child: RegisterFields(label: 'ESPECIALIZAÇÃO', enabled: true,hintText: 'Especialização', controllerTextField: controller.especializacaoController,index: 99,));
 
                           })),
                           Positioned(
@@ -254,7 +254,7 @@ class RegistrationPage extends GetView<RegistrationController> {
                                 shrinkWrap: true,
                                 itemCount: controller.itemCountDisc.value < 5 ? controller.itemCountDisc.value : 5,        //número de vezes que você deseja replicar o widget
                                 itemBuilder: (context, index){
-                                    return Expanded(child: RegisterFields(label: 'DISCIPLINA', enabled: true,hintText: 'Disciplina', controllerTextField: controller.disciplinaController));
+                                    return Expanded(child: RegisterFields(label: 'DISCIPLINA', enabled: true,hintText: 'Disciplina', controllerTextField: controller.disciplinaController,index: 99,));
 
                           })),
                           Positioned(

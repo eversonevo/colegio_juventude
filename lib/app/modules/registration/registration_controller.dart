@@ -75,6 +75,9 @@ ALGUNS ERROS AINDA
   TextEditingController especializacaoController = TextEditingController();
   TextEditingController disciplinaController = TextEditingController();
 
+  final List<TextEditingController> _listTextEditing = [TextEditingController(),TextEditingController(),TextEditingController(),TextEditingController(),TextEditingController(),TextEditingController()];
+  List<TextEditingController> get listTextEditing => _listTextEditing;
+
   List<TextEditingController> listFormation = [TextEditingController()];
   RxList<TextEditingController> listPhones = [TextEditingController()].obs;
 

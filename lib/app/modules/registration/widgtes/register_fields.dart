@@ -6,30 +6,38 @@ import 'package:get/get_state_manager/src/simple/get_view.dart';
 
 class RegisterFields extends GetView<RegistrationController> {
 
-  RegisterFields({ @required label, required enabled, required hintText,required controllerTextField,Key? key })
+  RegisterFields({ @required label, required enabled, required hintText,required index,required controllerTextField,Key? key })
    : _label = label,
    _controllerTextField = controllerTextField,
    _hintText = hintText,
    _enabled = enabled,
-   //_index = index,
+   _index = index,
    super(key: key);
 
   String _label;
   bool _enabled;
   String _hintText;
   TextEditingController _controllerTextField;
-  //int _index;
+  int _index;
+
+  TextEditingController get testarController {
+    if (_index == 99)
+      return _controllerTextField;
+    else
+    return controller.listTextEditing[_index];
+    
+  }
 
    @override
    Widget build(BuildContext context) {
-       return Obx(() => SizedBox(
+       return SizedBox(
          child: Padding(
            padding: const EdgeInsets.only(right: 8,left: 8),
            child: TextField(
                         onChanged: (value){
                           controller.verifyDatas();
                         },
-                        controller: _controllerTextField,
+                        controller: testarController,
                         enabled: _enabled,
                         autofocus: false,
                         decoration: InputDecoration(
@@ -44,6 +52,7 @@ class RegisterFields extends GetView<RegistrationController> {
                             hintText: _hintText),
                       ),
          ),
-       ),);
+       );
   }
 }
+
